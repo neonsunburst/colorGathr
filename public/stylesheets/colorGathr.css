@@ -17,7 +17,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   vertical-align: baseline;
 }
 
-/* # is id, . is class, don't forget, pro style, hack the planet */
+/* # is id, . is class */
 
 body {
   line-height: 1;
