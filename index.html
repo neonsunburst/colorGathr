@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	
+    <title>Hooray it's ColorGathr!</title>
+    <link href="colorGathr.css" media="all" rel="stylesheet" type="text/css"/>
+    <script src="test/vendor/json2.js"></script>
+    <script src="test/vendor/jquery-1.5.js"></script>
+    <script src="test/vendor/underscore-1.1.6.js"></script>
+    <script src="backbone.js"></script>
+    <script src="backbone-localstorage.js"></script>
+  </head>
+
+
+  <body>
+
+    <!-- ColorGathr App Interface -->
+
+	<div id="colorGathrApp">
+		
+		<div class="title">
+			<h1>ColorGathr</h1>
+		</div>
+		
+		<div class="content">
+			
+		  <ul class="colors">
+			<li id="red">Red</li>
+			<li id="blue">Blue</li>
+			<li id="green">Green</li>
+			<li id="yellow">Yellow</li>
+			<li id="black">Black</li>
+		  </ul>
+		<div>Your code is: ABCXYZ
+			</div>
+		
+		  <div id="insert-code">
+			<input id="new-code" placeholder="Enter their code here" type="text" />
+			<span class="ui-tooltip-top" style="display:none;">Press Enter to submit code</span>
+		  </div>
+		
+		<div id="stats">Here be stats</div>
+		
+	  </div>
+	
+	</div>
+	
+	<!-- Templates -->
+		
+	<script type="text/template" id="color-template">
+		<div class=""
+				
