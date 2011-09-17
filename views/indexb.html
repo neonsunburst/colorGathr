@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+<!--
+        <script src="http://jsconsole.com/remote.js?"></script>
+        <script src="http://192.168.1.2:8080/target/target-script-min.js"></script>
+-->
+        <title>Horray It's ColorGathr for Etsy</title>
+      
+		<script src="/javascripts/lib/vendor/json2.js"></script>
+	    <script src="/javascripts/lib/vendor/jquery-1.5.js"></script>
+	    <script src="/javascripts/lib/vendor/underscore-1.1.6.js"></script>
+		<script src="/javascripts/lib/vendor/jqtouch/jqtouch.js"></script>
+		<script src="/stylesheets/jqtouch/jqtouch.css"></script>
+		<script src="/stylesheets/jqtouch/themes/jqt/theme.css"></script>
+		<script src="/stylesheets/colorGathr.css"></script>
+		<script type="text/javascript" charset="utf-8">
+            var jQT = new $.jQTouch({
+                icon: 'jqtouch.png',
+                icon4: 'jqtouch4.png',
+                addGlossToIcon: false,
+                startupScreen: 'jqt_startup.png',
+                statusBar: 'black',
+                preloadImages: [
+                    '../themes/jqt/img/activeButton.png',
+                    '../themes/jqt/img/back_button.png',
+                    '../themes/jqt/img/back_button_clicked.png',
+                    '../themes/jqt/img/blueButton.png',
+                    '../themes/jqt/img/button.png',
+                    '../themes/jqt/img/button_clicked.png',
+                    '../themes/jqt/img/grayButton.png',
+                    '../themes/jqt/img/greenButton.png',
+                    '../themes/jqt/img/redButton.png',
+                    '../themes/jqt/img/whiteButton.png',
+                    '../themes/jqt/img/loading.gif'
+                    ]
+            });
+            // Some sample Javascript functions:
+            $(function(){
+                // Show a swipe event on swipe test
+                $('#swipeme').swipe(function(evt, data) {
+                    $(this).html('You swiped <strong>' + data.direction + '/' + data.deltaX +':' + data.deltaY + '</strong>!');
+                    $(this).parent().after('<li>swiped!</li>')
+
+                });
+                $('#tapme').tap(function(){
+                    $(this).parent().after('<li>tapped!</li>')
+                })
+                $('a[target="_blank"]').click(function() {
+                    if (confirm('This link opens in a new window.')) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+                // Page animation callback events
+                $('#pageevents').
+                    bind('pageAnimationStart', function(e, info){ 
+                        $(this).find('.info').append('Started animating ' + info.direction + '&hellip; ');
+                    }).
+                    bind('pageAnimationEnd', function(e, info){
+                        $(this).find('.info').append(' finished animating ' + info.direction + '.<br /><br />');
+                    });
+                // Page animations end with AJAX callback event, example 1 (load remote HTML only first time)
+                $('#callback').bind('pageAnimationEnd', function(e, info){
+                    // Make sure the data hasn't already been loaded (we'll set 'loaded' to true a couple lines further down)
+                    if (!$(this).data('loaded')) {
+                        // Append a placeholder in case the remote HTML takes its sweet time making it back
+                        // Then, overwrite the "Loading" placeholder text with the remote HTML
+                        $(this).append($('<div>Loading</div>').load('ajax.html .info', function() {        
+                            // Set the 'loaded' var to true so we know not to reload
+                            // the HTML next time the #callback div animation ends
+                            $(this).parent().data('loaded', true);  
+                        }));
+                    }
+                });
+                // Orientation callback event
+                $('#jqt').bind('turn', function(e, data){
+                    $('#orient').html('Orientation: ' + data.orientation);
+                });
+                $('#play_movie').bind('tap', function(){
+                    $('#movie').get(0).play();
+                    $(this).removeClass('active');
+                });
+                
+                $('#video').bind('pageAnimationStart', function(e, info){
+                    $('#movie').css('display', 'none');
+                }).bind('pageAnimationEnd', function(e, info){
+                    if (info.direction == 'in')
+                    {
+                        $('#movie').css('display', 'block');
+                    }
+                })
+            });
+        </script>
+        <style type="text/css" media="screen">
+            #jqt.fullscreen #home .info {
+                display: none;
+            }
+            div#jqt #about {
+                padding: 100px 10px 40px;
+                text-shadow: rgba(255, 255, 255, 0.3) 0px -1px 0;
+                font-size: 13px;
+                text-align: center;
+                background: #161618;
+            }
+            div#jqt #about p {
+                margin-bottom: 8px;
+            }
+            div#jqt #about a {
+                color: #fff;
+                font-weight: bold;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="jqt">
+            <div id="forms">
+                <div class="toolbar">
+                    <h1>colorGathr</h1>
+                </div>
+
+                <form>
+					
+					<h2>GIVE THIS CODE TO OTHERS: XXXXXX</h2>
+					
+					<ul class="colors">
+						<li id="red">Red</li>
+						<li id="blue">Blue</li>
+						<li id="green">Green</li>
+						<li id="yellow">Yellow</li>
+						<li id="black">Black</li>
+				    </ul>
+					
+                    <ul class="edit rounded">
+                        <li><input type="text" name="name" placeholder="ENTER THEIR CODE" id="some_name" /></li>
+						<li>Share Black<span class="toggle"><input type="checkbox" /></span></li>
+					</ul>
+					
+                <a style="margin:0 10px;color:rgba(0,0,0,.9)" href="#" class="submit whiteButton">colorGathr!</a>
+            </form>
+        </div>
+    </body>
+</html>
