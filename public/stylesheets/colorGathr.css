@@ -37,44 +37,46 @@ html {
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
-    line-height: 1.4em;
     background: #222;
     color: #000;
   }
 
 .colors {
 	background-color:#333;
-	width:400px;;
-	color:#888;
+	color:#FFF;
+	font-size:16pt;
 	padding:5px;
+	width:400px
 }
 
 .colors li {
 	padding:15px;
+	height:250px;
 }
 
-#red {
+#color-81991383 {
 	background-color:red;
+	color:red;
 }
 
-#blue {
+#color-81991107 {
 	background-color:blue;
+	color:blue;
 }
 
-#green {
+#color-81991014 {
 	background-color:green;
 }
 
-#yellow {
+#color-81990831 {
 	background-color:yellow;
 }
 
-#black {
+#color-81990495 {
 	background-color:black;
 }
 
 #colorGathrApp {
-  width: 480px;
   margin: 0 auto 40px;
   background: gray;
   padding: 20px;
