@@ -18,13 +18,17 @@
     <!-- ColorGathr App Interface -->
 
 	<div id="colorGathrApp">
+{{#results}}
+  {{#MainImage}}
+     <img src="{{url_75x75}}" />
+  {{/MainImage}}
+{{/results}}
 		
 		<div class="title">
 			<h1>ColorGathr</h1>
 		</div>
 		
 		<div class="content">
-			
 		  <ul class="colors">
 			<li id="red">Red</li>
 			<li id="blue">Blue</li>
@@ -32,7 +36,7 @@
 			<li id="yellow">Yellow</li>
 			<li id="black">Black</li>
 		  </ul>
-		<div>Your code is: ABCXYZ
+		<div>Your code is: {{username}} 
 			</div>
 		
 		  <div id="insert-code">
