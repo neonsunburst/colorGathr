@@ -35,14 +35,6 @@ app.configure('production', function(){
 
 app.get('/', function(req, res){
   
-  // Couchdb stuff
-  // var colors = couch('http://dylanbathurst:macosx42@dylan.couchone.com:5984/colorgathr');
-
-  // colors.get('56b9b01098e0ca32d67a8dbc54000bda', function(err, doc) {
-  //   if (err) throw err;
-
-  //   console.log(doc);
-  // });
   var buffer = '';
   var options = {
     host: 'openapi.etsy.com',
@@ -52,8 +44,22 @@ app.get('/', function(req, res){
   };
 
   http.get(options, function(response) {
+    var randyString = '',
+        cookie;
+
+    if (req.headers.cookie) {
+      cookie = req.headers.cookie.split('=');
+    }
+
+    if (cookie && cookie[0] == 'username') {
+      randyString = cookie[1];
+    } else {
+      randyString = randomString();
+    }
+
     res.writeHead(200, {
-      'content-type': 'text/html'
+      'content-type': 'text/html',
+      'set-cookie': 'username=' + randyString 
     });
 
     response.on('data', function(chunk) {
@@ -61,7 +67,7 @@ app.get('/', function(req, res){
     }).on('end', function () {
       var view = JSON.parse(buffer);
 
-      view.username = randomString();
+      view.username = randyString;
 
       mu.root = __dirname + '/views/';
 
@@ -92,6 +98,17 @@ app.get('/', function(req, res){
     }
     return randomstring;
   }
+
+});
+
+app.post('/collect', function(req, res) {
+
+  var user = couch('http://dylanbathurst:macosx42@dylan.couchone.com:5984/colorgathr');
+  var doc = {"_id": "gB3yDB", "items": [{'color': 'red'}]};
+  user.save(doc, function(err, doc) {
+    if (err) throw err;
+    console.log(doc);  
+  });
 
 });
 
