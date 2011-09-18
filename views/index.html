@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Hooray it's ColorGathr!</title>
+    <title>Etsy ColorGathr!</title>
+	
   </head>
   <body>
 
@@ -11,40 +12,37 @@
 
 		<div class="content">
 			<div class="title">
-				<h1>Etsy ColorGathr</h1>
-			</div>
+				<h1><img src="/images/logo.jpg" alt="logo"></h1><P>
+				<P>
+				<h2>Give people your code and you collect the Etsy products they have</h2>
+			
 		  <ul class="colors">
 			
 			{{#results}}
 			  {{#MainImage}}
 				<li id=color-{{listing_id}} class="color" 
-				style="border-color:green; border size:5px; background:url('{{url_570xN}}') 
-				no-repeat; {{/MainImage}};"><span style="padding=5px; background-color:green">{{title}}</span></li>
+				style="border-color:#222; border size:5px; background:url('{{url_570xN}}') 
+				no-repeat; {{/MainImage}};"><span style="padding=5px; background-color:grey">{{title}}</span></li>
 			{{/results}}
 			
 		  </ul>
-		<div>Your code is: {{username}}
-			</div>
+		<h2>Your code is: {{username}}</h2>
 		
-		  <div id="insert-code">
-      <form method="POST" action="/collect">
+	 <div id="insert-code">
+      
+		<form method="POST" action="/collect">
         <input id="new-code" name="new-code" placeholder="Enter their code here" type="text" />
-        <span class="ui-tooltip-top" style="display:none;">Press Enter to submit code</span>
+        <P><span style="display:none;">Press Enter to submit code</span>
         <input type="submit" value="Submit" />
         <input type="hidden" name="username" value="{{username}}" />
       </form>
-		  </div>
+
+	</div>
+		</div>
 	  </div>
 	</div>
-	
-	<!-- Templates -->
-
   </body>
 
   <link href="/stylesheets/colorGathr.css" media="all" rel="stylesheet" type="text/css"/>
   <script src="/javascripts/lib/vendor/json2.js"></script>
-  <script src="/javascripts/lib/vendor/jquery-1.5.js"></script>
-  <script src="/javascripts/lib/vendor/underscore-1.1.6.js"></script>
-  <script src="/javascripts/backbone.js"></script>
-  <script src="/javascripts/backbone-localstorage.js"></script>
 </html>
