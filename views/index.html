@@ -45,7 +45,9 @@
 		
 	 <div id="insert-code">
 
-      
+{{#colors}}
+  <span style="background:{{thing}}; display:block; width:40px; height:40px;"></span>
+{{/colors}}
 		<form method="POST" action="/collect">
         <input id="new-code" name="new-code" placeholder="Enter their code here" type="text" />
         <P><span style="display:none;">Press Enter to submit code</span>
