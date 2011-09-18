@@ -1,41 +1,27 @@
 <!DOCTYPE html>
 <html>
-
   <head>
-	
     <title>Hooray it's ColorGathr!</title>
-    <link href="/stylesheets/colorGathr.css" media="all" rel="stylesheet" type="text/css"/>
-    <script src="/javascripts/lib/vendor/json2.js"></script>
-    <script src="/javascripts/lib/vendor/jquery-1.5.js"></script>
-    <script src="/javascripts/lib/vendor/underscore-1.1.6.js"></script>
-    <script src="/javascripts/backbone.js"></script>
-    <script src="/javascripts/backbone-localstorage.js"></script>
   </head>
-
-
   <body>
 
     <!-- ColorGathr App Interface -->
 
 	<div id="colorGathrApp">
-{{#results}}
-  {{#MainImage}}
-     <img src="{{url_75x75}}" />
-  {{/MainImage}}
-{{/results}}
-		
-		<div class="title">
-			<h1>ColorGathr</h1>
-		</div>
-		
+
 		<div class="content">
+			<div class="title">
+				<h1>Etsy ColorGathr</h1>
+			</div>
 		  <ul class="colors">
-			<!--<li style="background-image:url('/images/yellow.jpg');color:red;" id="red">Red</li>-->
-			<li id="red">Red</li>
-			<li id="blue">Blue</li>
-			<li id="green">Green</li>
-			<li id="yellow">Yellow</li>
-			<li id="black">Black</li>
+			
+			{{#results}}
+			  {{#MainImage}}
+				<li id=color-{{listing_id}} class="color" 
+				style="border-color:green; border size:5px; background:url('{{url_570xN}}') 
+				no-repeat; {{/MainImage}};"><span style="padding=5px; background-color:green">{{title}}</span></li>
+			{{/results}}
+			
 		  </ul>
 		<div>Your code is: {{username}}
 			</div>
@@ -48,18 +34,17 @@
         <input type="hidden" name="username" value="{{username}}" />
       </form>
 		  </div>
-		
-		<div id="stats">Here be stats</div>
-		
 	  </div>
-	
 	</div>
 	
 	<!-- Templates -->
-		
-	<script type="text/template" id="color-template">
-		<div class=""
-	</script>
 
   </body>
+
+  <link href="/stylesheets/colorGathr.css" media="all" rel="stylesheet" type="text/css"/>
+  <script src="/javascripts/lib/vendor/json2.js"></script>
+  <script src="/javascripts/lib/vendor/jquery-1.5.js"></script>
+  <script src="/javascripts/lib/vendor/underscore-1.1.6.js"></script>
+  <script src="/javascripts/backbone.js"></script>
+  <script src="/javascripts/backbone-localstorage.js"></script>
 </html>
