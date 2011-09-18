@@ -103,13 +103,46 @@ app.get('/', function(req, res){
 
 app.post('/collect', function(req, res) {
 
-  var user = couch('http://dylanbathurst:macosx42@dylan.couchone.com:5984/colorgathr');
-  var doc = {"_id": "gB3yDB", "items": [{'color': 'red'}]};
-  user.save(doc, function(err, doc) {
+  var user = couch('http://dylanbathurst:macosx42@dylan.couchone.com:5984/colorgathr'),
+      form = req.body;
+      console.log(req.body),
+      cookie = req.headers.cookie.split('=');
+  
+
+  // this gets the new user
+  user.get(form['new-code'], function(err, doc) {
     if (err) throw err;
-    console.log(doc);  
+
+    var newItems = doc.items;
+
+    // this gets the currently playing user
+    user.get(cookie[1], function(err, doc) {
+      if (err) throw err;
+
+      var newObj = merge_options(newItems, doc.items);
+
+      var newDoc = {"_id": cookie[1], "items": newObj};
+
+      user.save(newDoc, function(err, doc) {
+        if (err) throw err;
+
+        res.writeHead(302, {
+          'Location': '/'  
+        });
+        res.end();
+      });
+
+    });
+    
   });
 
+  function merge_options(obj1,obj2){
+      var obj3 = {};
+      for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
+      for (var attrname in obj2) { obj3[attrname] = obj2[attrname]; }
+      return obj3;
+  }
+  
 });
 
 app.listen(3000);
